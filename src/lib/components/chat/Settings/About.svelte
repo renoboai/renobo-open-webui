@@ -120,21 +120,21 @@
 				<a href="https://discord.gg/5rJgQTnV4s" target="_blank">
 					<img
 						alt="Discord"
-						src="https://img.shields.io/badge/Discord-Open_WebUI-blue?logo=discord&logoColor=white"
+						src="https://img.shields.io/badge/Discord-Renobo_WebUI-blue?logo=discord&logoColor=white"
 					/>
 				</a>
 
-				<a href="https://twitter.com/OpenWebUI" target="_blank">
+				<a href="https://twitter.com/renoboai" target="_blank">
 					<img
 						alt="X (formerly Twitter) Follow"
-						src="https://img.shields.io/twitter/follow/OpenWebUI"
+						src="https://img.shields.io/twitter/follow/renoboai"
 					/>
 				</a>
 
-				<a href="https://github.com/open-webui/open-webui" target="_blank">
+				<a href="https://github.com/renoboai/open-webui" target="_blank">
 					<img
 						alt="Github Repo"
-						src="https://img.shields.io/github/stars/open-webui/open-webui?style=social&label=Star us on Github"
+						src="https://img.shields.io/github/stars/renoboai/open-webui?style=social&label=Star us on Github"
 					/>
 				</a>
 			</div>
