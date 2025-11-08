@@ -528,7 +528,7 @@
 					<div class="self-center mx-1.5">
 						<img
 							crossorigin="anonymous"
-							src="{WEBUI_BASE_URL}/static/renobo-logo.svg"
+							src="{WEBUI_BASE_URL}/static/renobo-logo.png"
 							class=" size-5 -translate-x-1.5"
 							alt="Renobo"
 						/>
