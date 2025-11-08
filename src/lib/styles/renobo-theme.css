@@ -182,3 +182,29 @@ pre {
 	transform: translateY(-4px);
 	box-shadow: 0 10px 15px -3px rgba(18, 74, 38, 0.1), 0 4px 6px -2px rgba(18, 74, 38, 0.05);
 }
+
+/* Renobo Theme Specific Styling */
+html.renobo {
+	/* Override backgrounds with green tints */
+	--renobo-bg-dark: 10 33 18;              /* Very dark green tint instead of pure gray */
+	--renobo-surface-dark: 15 42 24;         /* Dark green tint for surfaces */
+}
+
+/* Apply green-tinted backgrounds for renobo theme */
+html.renobo select,
+html.renobo .dark\:bg-gray-900 {
+	background-color: rgb(var(--renobo-surface-dark)) !important;
+}
+
+/* Accent colors for borders and highlights in renobo theme */
+html.renobo .border-gray-200,
+html.renobo .dark\:border-gray-800,
+html.renobo .dark\:border-gray-850 {
+	border-color: rgba(18, 74, 38, 0.2) !important;
+}
+
+/* Hover states with green tint */
+html.renobo .hover\:bg-gray-100:hover,
+html.renobo .dark\:hover\:bg-gray-900:hover {
+	background-color: rgba(18, 74, 38, 0.15) !important;
+}
