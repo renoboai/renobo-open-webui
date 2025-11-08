@@ -1,61 +1,184 @@
-@layer base {
-	:root {
-		--renobo-primary: 37 99 235;
-		--renobo-secondary: 16 185 129;
-		--renobo-bg: 249 250 251;
-		--renobo-surface: 255 255 255;
-		--renobo-text: 31 41 55;
-		--renobo-border: 229 231 235;
+/* Renobo Brand Theme - Extracted from reference-style/styles.css */
 
-		--epc-a: 16 185 129;
-		--epc-b: 52 211 153;
-		--epc-c: 134 239 172;
-		--epc-d: 253 224 71;
-		--epc-e: 251 146 60;
-		--epc-f: 249 115 22;
-		--epc-g: 220 38 38;
-	}
+:root {
+	/* Renobo Brand Green (Primary from website) */
+	--renobo-green: 18 74 38;           /* #124a26 */
+	--renobo-green-light: 26 107 57;    /* #1a6b39 */
+	--renobo-green-lighter: 45 139 77;  /* #2d8b4d */
+	--renobo-green-lightest: 76 175 96; /* #4caf60 */
+	--renobo-green-bg: 240 248 242;     /* #f0f8f2 */
 
-	.dark {
-		--renobo-bg: 15 23 42;
-		--renobo-surface: 30 41 59;
-		--renobo-text: 226 232 240;
-		--renobo-border: 51 65 85;
-	}
+	/* Primary/Secondary for compatibility */
+	--renobo-primary: 18 74 38;         /* Renobo Green */
+	--renobo-secondary: 26 107 57;      /* Renobo Green Light */
 
-	body {
-		@apply bg-[rgb(var(--renobo-bg))] text-[rgb(var(--renobo-text))] transition;
-	}
+	/* Neutral Colors (from website) */
+	--renobo-surface: 255 255 255;      /* white */
+	--renobo-bg: 249 250 251;           /* gray-50 */
+	--renobo-text: 31 41 55;            /* gray-800 */
+	--renobo-border: 229 231 235;       /* gray-200 */
+}
 
-	/* Chat bubbles */
-	.user-message {
-		@apply bg-primary/10 border border-primary/20;
-	}
+.dark {
+	/* Dark mode colors */
+	--renobo-bg: 17 24 39;              /* gray-900 */
+	--renobo-surface: 31 41 55;         /* gray-800 */
+	--renobo-text: 243 244 246;         /* gray-100 */
+	--renobo-border: 75 85 99;          /* gray-600 */
+}
 
-	.assistant-message {
-		@apply bg-surface border border-[rgb(var(--renobo-border))];
-	}
+/* Base body styling */
+body {
+	background-color: rgb(var(--renobo-bg));
+	color: rgb(var(--renobo-text));
+	font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
 
-	/* EPC badges */
-	.epc-a { @apply bg-epc-a text-white; }
-	.epc-b { @apply bg-epc-b text-white; }
-	.epc-c { @apply bg-epc-c text-gray-900; }
-	.epc-d { @apply bg-epc-d text-gray-900; }
-	.epc-e { @apply bg-epc-e text-white; }
-	.epc-f { @apply bg-epc-f text-white; }
-	.epc-g { @apply bg-epc-g text-white; }
+/* Headings - Nordic style */
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+	font-weight: 600;
+	line-height: 1.2;
+	letter-spacing: -0.02em;
+}
 
-	/* Sidebar */
-	.sidebar {
-		@apply bg-surface-dark border-r border-[rgb(var(--renobo-border))];
-	}
+/* Buttons - Renobo Style */
+button.primary,
+.btn-primary {
+	background-color: rgb(var(--renobo-green));
+	color: white;
+	font-weight: 600;
+	border-radius: 12px;
+	padding: 0.75rem 1.5rem;
+	transition: all 0.3s ease;
+	box-shadow: 0 4px 12px rgba(18, 74, 38, 0.2);
+	border: none;
+	cursor: pointer;
+}
 
-	/* Buttons */
-	button.primary {
-		@apply bg-primary hover:bg-primary/90 text-white;
-	}
+button.primary:hover,
+.btn-primary:hover {
+	background-color: rgb(var(--renobo-green-light));
+	transform: translateY(-2px);
+	box-shadow: 0 8px 20px rgba(18, 74, 38, 0.3);
+}
 
-	button.secondary {
-		@apply bg-secondary hover:bg-secondary/90 text-white;
-	}
+button.secondary,
+.btn-secondary {
+	background-color: rgb(var(--renobo-green-light));
+	color: white;
+	font-weight: 600;
+	border-radius: 12px;
+	padding: 0.75rem 1.5rem;
+	transition: all 0.3s ease;
+	border: none;
+	cursor: pointer;
+}
+
+button.secondary:hover,
+.btn-secondary:hover {
+	background-color: rgb(var(--renobo-green-lighter));
+}
+
+/* Link Styling */
+a {
+	color: rgb(var(--renobo-green));
+	transition: color 0.2s ease;
+	text-decoration: none;
+}
+
+a:hover {
+	color: rgb(var(--renobo-green-light));
+}
+
+/* Input Fields - Renobo Style */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+textarea,
+select {
+	border: 2px solid rgb(var(--renobo-border));
+	border-radius: 12px;
+	padding: 0.5rem 1rem;
+	transition: all 0.2s ease;
+	font-family: 'Inter', system-ui, sans-serif;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+	outline: none;
+	border-color: rgb(var(--renobo-green));
+	box-shadow: 0 0 0 3px rgba(18, 74, 38, 0.1);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: rgb(var(--renobo-bg));
+}
+
+::-webkit-scrollbar-thumb {
+	background: rgba(18, 74, 38, 0.3);
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: rgba(18, 74, 38, 0.5);
+}
+
+/* Status Indicator */
+.status-dot {
+	width: 0.5rem;
+	height: 0.5rem;
+	border-radius: 9999px;
+	background-color: rgb(var(--renobo-green));
+	animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+	0%, 100% { opacity: 1; }
+	50% { opacity: 0.5; }
+}
+
+/* Loading/Progress - Renobo Style */
+.progress-bar {
+	background: linear-gradient(90deg, rgb(var(--renobo-green)), rgb(var(--renobo-green-light)));
+	border-radius: 10px;
+	transition: width 0.3s ease;
+}
+
+/* Code Blocks */
+pre, code {
+	font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+	border-radius: 12px;
+}
+
+pre {
+	background-color: rgb(var(--renobo-surface));
+	border: 1px solid rgb(var(--renobo-border));
+	padding: 1rem;
+}
+
+/* Gradient Text (for headlines) */
+.gradient-text {
+	background: linear-gradient(135deg, rgb(var(--renobo-green)) 0%, rgb(var(--renobo-green-lighter)) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+/* Card hover effects */
+.card:hover,
+.feature-card:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 10px 15px -3px rgba(18, 74, 38, 0.1), 0 4px 6px -2px rgba(18, 74, 38, 0.05);
 }

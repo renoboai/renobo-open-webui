@@ -37,6 +37,7 @@
 
 	import '../tailwind.css';
 	import '../app.css';
+	import '$lib/styles/renobo-theme.css';
 
 	import 'tippy.js/dist/tippy.css';
 

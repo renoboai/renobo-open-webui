@@ -10,19 +10,32 @@ export default {
 			colors: {
 				primary: 'rgb(var(--renobo-primary) / <alpha-value>)',
 				secondary: 'rgb(var(--renobo-secondary) / <alpha-value>)',
-				epc: {
-					a: 'rgb(var(--epc-a) / <alpha-value>)',
-					b: 'rgb(var(--epc-b) / <alpha-value>)',
-					c: 'rgb(var(--epc-c) / <alpha-value>)',
-					d: 'rgb(var(--epc-d) / <alpha-value>)',
-					e: 'rgb(var(--epc-e) / <alpha-value>)',
-					f: 'rgb(var(--epc-f) / <alpha-value>)',
-					g: 'rgb(var(--epc-g) / <alpha-value>)'
+				'renobo-green': {
+					DEFAULT: 'rgb(var(--renobo-green) / <alpha-value>)',
+					light: 'rgb(var(--renobo-green-light) / <alpha-value>)',
+					lighter: 'rgb(var(--renobo-green-lighter) / <alpha-value>)',
+					lightest: 'rgb(var(--renobo-green-lightest) / <alpha-value>)',
+					bg: 'rgb(var(--renobo-green-bg) / <alpha-value>)'
 				}
 			},
 			backgroundColor: {
 				'surface': 'rgb(var(--renobo-surface) / <alpha-value>)',
 				'surface-dark': 'rgb(var(--renobo-surface-dark) / <alpha-value>)'
+			},
+			borderRadius: {
+				'renobo': '12px',
+				'renobo-lg': '16px',
+				'renobo-xl': '20px'
+			},
+			fontFamily: {
+				inter: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+				display: ['Space Grotesk', 'system-ui', '-apple-system', 'sans-serif']
+			},
+			boxShadow: {
+				'renobo-sm': '0 1px 2px 0 rgba(18, 74, 38, 0.05)',
+				'renobo-md': '0 4px 6px -1px rgba(18, 74, 38, 0.1), 0 2px 4px -1px rgba(18, 74, 38, 0.06)',
+				'renobo-lg': '0 10px 15px -3px rgba(18, 74, 38, 0.1), 0 4px 6px -2px rgba(18, 74, 38, 0.05)',
+				'renobo-xl': '0 20px 25px -5px rgba(18, 74, 38, 0.1), 0 10px 10px -5px rgba(18, 74, 38, 0.04)'
 			},
 			typography: {
 				DEFAULT: {
