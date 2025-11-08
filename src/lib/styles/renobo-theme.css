@@ -1,0 +1,61 @@
+@layer base {
+	:root {
+		--renobo-primary: 37 99 235;
+		--renobo-secondary: 16 185 129;
+		--renobo-bg: 249 250 251;
+		--renobo-surface: 255 255 255;
+		--renobo-text: 31 41 55;
+		--renobo-border: 229 231 235;
+
+		--epc-a: 16 185 129;
+		--epc-b: 52 211 153;
+		--epc-c: 134 239 172;
+		--epc-d: 253 224 71;
+		--epc-e: 251 146 60;
+		--epc-f: 249 115 22;
+		--epc-g: 220 38 38;
+	}
+
+	.dark {
+		--renobo-bg: 15 23 42;
+		--renobo-surface: 30 41 59;
+		--renobo-text: 226 232 240;
+		--renobo-border: 51 65 85;
+	}
+
+	body {
+		@apply bg-[rgb(var(--renobo-bg))] text-[rgb(var(--renobo-text))] transition;
+	}
+
+	/* Chat bubbles */
+	.user-message {
+		@apply bg-primary/10 border border-primary/20;
+	}
+
+	.assistant-message {
+		@apply bg-surface border border-[rgb(var(--renobo-border))];
+	}
+
+	/* EPC badges */
+	.epc-a { @apply bg-epc-a text-white; }
+	.epc-b { @apply bg-epc-b text-white; }
+	.epc-c { @apply bg-epc-c text-gray-900; }
+	.epc-d { @apply bg-epc-d text-gray-900; }
+	.epc-e { @apply bg-epc-e text-white; }
+	.epc-f { @apply bg-epc-f text-white; }
+	.epc-g { @apply bg-epc-g text-white; }
+
+	/* Sidebar */
+	.sidebar {
+		@apply bg-surface-dark border-r border-[rgb(var(--renobo-border))];
+	}
+
+	/* Buttons */
+	button.primary {
+		@apply bg-primary hover:bg-primary/90 text-white;
+	}
+
+	button.secondary {
+		@apply bg-secondary hover:bg-secondary/90 text-white;
+	}
+}
