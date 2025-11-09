@@ -1,306 +1,306 @@
-/* Renobo Brand Theme - Extracted from reference-style/styles.css */
+/* =================================================================
+   RENOBO THEME - Based on reference-style/styles.css
 
+   This file contains ALL Renobo theme styling.
+   To customize the theme, modify the CSS variables in the :root section.
+
+   Key sections:
+   1. CSS Variables (EASY TO CUSTOMIZE)
+   2. Base Styles
+   3. Typography
+   4. Components
+   5. Utilities
+   ================================================================= */
+
+/* =================================================================
+   1. CSS VARIABLES - CUSTOMIZE HERE
+   ================================================================= */
 :root {
-	/* Renobo Brand Green (Primary from website) */
-	--renobo-green: 18 74 38;           /* #124a26 */
-	--renobo-green-light: 26 107 57;    /* #1a6b39 */
-	--renobo-green-lighter: 45 139 77;  /* #2d8b4d */
-	--renobo-green-lightest: 76 175 96; /* #4caf60 */
-	--renobo-green-bg: 240 248 242;     /* #f0f8f2 */
+	/* Brand Colors - Renobo Green */
+	--renobo-primary-green: #124a26;
+	--renobo-primary-green-light: #1a6b39;
+	--renobo-primary-green-lighter: #2d8b4d;
+	--renobo-primary-green-lightest: #4caf60;
+	--renobo-primary-green-bg: #f0f8f2;
+	--renobo-primary-green-soft: #e8f5ea;
 
-	/* Primary/Secondary for compatibility */
-	--renobo-primary: 18 74 38;         /* Renobo Green */
-	--renobo-secondary: 26 107 57;      /* Renobo Green Light */
+	/* Supporting Colors */
+	--renobo-white: #ffffff;
+	--renobo-gray-50: #f9fafb;
+	--renobo-gray-100: #f3f4f6;
+	--renobo-gray-200: #e5e7eb;
+	--renobo-gray-300: #d1d5db;
+	--renobo-gray-400: #9ca3af;
+	--renobo-gray-500: #6b7280;
+	--renobo-gray-600: #4b5563;
+	--renobo-gray-700: #374151;
+	--renobo-gray-800: #1f2937;
+	--renobo-gray-900: #111827;
 
-	/* Neutral Colors (from website) */
-	--renobo-surface: 255 255 255;      /* white */
-	--renobo-bg: 249 250 251;           /* gray-50 */
-	--renobo-text: 31 41 55;            /* gray-800 */
-	--renobo-border: 229 231 235;       /* gray-200 */
+	/* Typography */
+	--renobo-font-inter: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+	--renobo-font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+
+	/* Spacing & Layout */
+	--renobo-border-radius: 12px;
+	--renobo-border-radius-lg: 16px;
+	--renobo-border-radius-xl: 20px;
+
+	/* Shadows with green tint */
+	--renobo-shadow-sm: 0 1px 2px 0 rgba(18, 74, 38, 0.05);
+	--renobo-shadow-md: 0 4px 6px -1px rgba(18, 74, 38, 0.1), 0 2px 4px -1px rgba(18, 74, 38, 0.06);
+	--renobo-shadow-lg: 0 10px 15px -3px rgba(18, 74, 38, 0.1), 0 4px 6px -2px rgba(18, 74, 38, 0.05);
+	--renobo-shadow-xl: 0 20px 25px -5px rgba(18, 74, 38, 0.1), 0 10px 10px -5px rgba(18, 74, 38, 0.04);
+
+	/* Transitions */
+	--renobo-transition-fast: 0.15s ease;
+	--renobo-transition-normal: 0.3s ease;
+	--renobo-transition-slow: 0.5s ease;
 }
 
-.dark {
-	/* Dark mode colors */
-	--renobo-bg: 17 24 39;              /* gray-900 */
-	--renobo-surface: 31 41 55;         /* gray-800 */
-	--renobo-text: 243 244 246;         /* gray-100 */
-	--renobo-border: 75 85 99;          /* gray-600 */
-}
-
-/* Base body styling */
-body {
-	background-color: rgb(var(--renobo-bg));
-	color: rgb(var(--renobo-text));
-	font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+/* =================================================================
+   2. BASE STYLES
+   ================================================================= */
+html.renobo {
+	background-color: var(--renobo-primary-green-bg);
+	font-family: var(--renobo-font-inter);
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Headings - Nordic style */
-h1, h2, h3, h4, h5, h6 {
-	font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-	font-weight: 600;
-	line-height: 1.2;
-	letter-spacing: -0.02em;
-}
-
-/* Buttons - Renobo Style */
-button.primary,
-.btn-primary {
-	background-color: rgb(var(--renobo-green));
-	color: white;
-	font-weight: 600;
-	border-radius: 12px;
-	padding: 0.75rem 1.5rem;
-	transition: all 0.3s ease;
-	box-shadow: 0 4px 12px rgba(18, 74, 38, 0.2);
-	border: none;
-	cursor: pointer;
-}
-
-button.primary:hover,
-.btn-primary:hover {
-	background-color: rgb(var(--renobo-green-light));
-	transform: translateY(-2px);
-	box-shadow: 0 8px 20px rgba(18, 74, 38, 0.3);
-}
-
-button.secondary,
-.btn-secondary {
-	background-color: rgb(var(--renobo-green-light));
-	color: white;
-	font-weight: 600;
-	border-radius: 12px;
-	padding: 0.75rem 1.5rem;
-	transition: all 0.3s ease;
-	border: none;
-	cursor: pointer;
-}
-
-button.secondary:hover,
-.btn-secondary:hover {
-	background-color: rgb(var(--renobo-green-lighter));
-}
-
-/* Link Styling */
-a {
-	color: rgb(var(--renobo-green));
-	transition: color 0.2s ease;
-	text-decoration: none;
-}
-
-a:hover {
-	color: rgb(var(--renobo-green-light));
-}
-
-/* Input Fields - Renobo Style */
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="search"],
-textarea,
-select {
-	border: 2px solid rgb(var(--renobo-border));
-	border-radius: 12px;
-	padding: 0.5rem 1rem;
-	transition: all 0.2s ease;
-	font-family: 'Inter', system-ui, sans-serif;
-}
-
-input:focus,
-textarea:focus,
-select:focus {
-	outline: none;
-	border-color: rgb(var(--renobo-green));
-	box-shadow: 0 0 0 3px rgba(18, 74, 38, 0.1);
-}
-
-/* Scrollbar Styling */
-::-webkit-scrollbar {
-	width: 8px;
-	height: 8px;
-}
-
-::-webkit-scrollbar-track {
-	background: rgb(var(--renobo-bg));
-}
-
-::-webkit-scrollbar-thumb {
-	background: rgba(18, 74, 38, 0.3);
-	border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-	background: rgba(18, 74, 38, 0.5);
-}
-
-/* Status Indicator */
-.status-dot {
-	width: 0.5rem;
-	height: 0.5rem;
-	border-radius: 9999px;
-	background-color: rgb(var(--renobo-green));
-	animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-	0%, 100% { opacity: 1; }
-	50% { opacity: 0.5; }
-}
-
-/* Loading/Progress - Renobo Style */
-.progress-bar {
-	background: linear-gradient(90deg, rgb(var(--renobo-green)), rgb(var(--renobo-green-light)));
-	border-radius: 10px;
-	transition: width 0.3s ease;
-}
-
-/* Code Blocks */
-pre, code {
-	font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
-	border-radius: 12px;
-}
-
-pre {
-	background-color: rgb(var(--renobo-surface));
-	border: 1px solid rgb(var(--renobo-border));
-	padding: 1rem;
-}
-
-/* Gradient Text (for headlines) */
-.gradient-text {
-	background: linear-gradient(135deg, rgb(var(--renobo-green)) 0%, rgb(var(--renobo-green-lighter)) 100%);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	background-clip: text;
-}
-
-/* Card hover effects */
-.card:hover,
-.feature-card:hover {
-	transform: translateY(-4px);
-	box-shadow: 0 10px 15px -3px rgba(18, 74, 38, 0.1), 0 4px 6px -2px rgba(18, 74, 38, 0.05);
-}
-
-/* Renobo Theme Specific Styling - Light & Green */
-html.renobo {
-	/* Light backgrounds with green tints */
-	--renobo-bg-light: 240 248 242;          /* Light green background */
-	--renobo-surface-light: 255 255 255;     /* White surfaces */
-	--renobo-surface-hover: 232 245 237;     /* Lighter green on hover */
-	--renobo-text-primary: 18 74 38;         /* Dark green text */
-	--renobo-text-secondary: 26 107 57;      /* Medium green text */
-	background-color: rgb(var(--renobo-bg-light)) !important;
-	font-family: 'Inter', 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif !important;
-}
-
-/* Sidebar - White background for renobo theme */
-html.renobo #sidebar {
-	background-color: rgb(var(--renobo-surface-light)) !important;
-	color: rgb(var(--renobo-text-primary)) !important;
-	border-right: 1px solid rgba(18, 74, 38, 0.2);
-}
-
-/* Main content area - Light green background */
 html.renobo body {
-	background-color: rgb(var(--renobo-bg-light)) !important;
-	color: rgb(var(--renobo-text-primary)) !important;
+	background-color: var(--renobo-primary-green-bg) !important;
+	color: var(--renobo-gray-800) !important;
+	font-family: var(--renobo-font-inter) !important;
+	line-height: 1.6;
+	font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
 }
 
-/* Main chat area - Light green background */
-html.renobo main,
-html.renobo .main-content {
-	background-color: rgb(var(--renobo-bg-light)) !important;
-}
-
-/* Override dark backgrounds with light ones */
-html.renobo .dark\:bg-gray-950,
-html.renobo .dark\:bg-gray-900,
-html.renobo .dark\:bg-gray-850,
-html.renobo .dark\:bg-gray-800 {
-	background-color: rgb(var(--renobo-surface-light)) !important;
-}
-
-html.renobo .bg-gray-50 {
-	background-color: rgb(var(--renobo-surface-hover)) !important;
-}
-
-/* Override dark text with dark green colors */
-html.renobo .dark\:text-gray-200,
-html.renobo .dark\:text-gray-300,
-html.renobo .dark\:text-white,
-html.renobo .text-gray-800,
-html.renobo .text-gray-900,
-html.renobo .dark\:text-gray-100,
-html.renobo .text-gray-700 {
-	color: rgb(var(--renobo-text-primary)) !important;
-}
-
-html.renobo .text-gray-600,
-html.renobo .dark\:text-gray-400,
-html.renobo .text-gray-500 {
-	color: rgb(var(--renobo-text-secondary)) !important;
-}
-
-/* Headings in dark green */
+/* =================================================================
+   3. TYPOGRAPHY
+   ================================================================= */
 html.renobo h1,
 html.renobo h2,
 html.renobo h3,
 html.renobo h4,
 html.renobo h5,
 html.renobo h6 {
-	color: rgb(var(--renobo-text-primary)) !important;
-	font-family: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif !important;
+	font-family: var(--renobo-font-display) !important;
+	font-weight: 600;
+	line-height: 1.2;
+	letter-spacing: -0.02em;
+	color: var(--renobo-gray-900) !important;
 }
 
-/* Select dropdowns - Light background */
-html.renobo select {
-	background-color: rgb(var(--renobo-surface-light)) !important;
-	color: rgb(var(--renobo-text)) !important;
-	border-color: rgba(18, 74, 38, 0.2) !important;
+html.renobo h1 {
+	font-weight: 700;
+	letter-spacing: -0.03em;
 }
 
-/* Borders with green accent */
+/* Text colors */
+html.renobo .text-gray-900,
+html.renobo .dark\:text-gray-100,
+html.renobo .dark\:text-white,
+html.renobo .text-gray-800,
+html.renobo .dark\:text-gray-200 {
+	color: var(--renobo-gray-900) !important;
+}
+
+html.renobo .text-gray-700,
+html.renobo .dark\:text-gray-300 {
+	color: var(--renobo-gray-700) !important;
+}
+
+html.renobo .text-gray-600,
+html.renobo .text-gray-500,
+html.renobo .dark\:text-gray-400,
+html.renobo .dark\:text-gray-500 {
+	color: var(--renobo-gray-600) !important;
+}
+
+/* =================================================================
+   4. COMPONENTS
+   ================================================================= */
+
+/* Sidebar */
+html.renobo #sidebar {
+	background-color: var(--renobo-white) !important;
+	color: var(--renobo-gray-800) !important;
+	border-right: 1px solid var(--renobo-gray-200);
+}
+
+/* Main content area */
+html.renobo main {
+	background-color: var(--renobo-primary-green-bg) !important;
+}
+
+/* Backgrounds - Override dark theme */
+html.renobo .bg-white,
+html.renobo .dark\:bg-gray-950,
+html.renobo .dark\:bg-gray-900,
+html.renobo .dark\:bg-gray-850,
+html.renobo .dark\:bg-gray-800 {
+	background-color: var(--renobo-white) !important;
+}
+
+html.renobo .bg-gray-50,
+html.renobo .dark\:bg-gray-800 {
+	background-color: var(--renobo-gray-50) !important;
+}
+
+html.renobo .bg-gray-100 {
+	background-color: var(--renobo-gray-100) !important;
+}
+
+/* Borders */
 html.renobo .border-gray-50,
 html.renobo .border-gray-100,
 html.renobo .border-gray-200,
 html.renobo .dark\:border-gray-800,
 html.renobo .dark\:border-gray-850,
 html.renobo .dark\:border-gray-900 {
-	border-color: rgba(18, 74, 38, 0.15) !important;
+	border-color: var(--renobo-gray-200) !important;
 }
 
-/* Hover states with light green tint */
+/* Hover states */
+html.renobo .hover\:bg-gray-50:hover,
 html.renobo .hover\:bg-gray-100:hover,
 html.renobo .dark\:hover\:bg-gray-900:hover,
+html.renobo .dark\:hover\:bg-gray-850:hover,
+html.renobo .dark\:hover\:bg-gray-800:hover {
+	background-color: var(--renobo-primary-green-soft) !important;
+}
+
+/* Buttons */
+html.renobo button {
+	font-family: var(--renobo-font-inter) !important;
+	transition: var(--renobo-transition-normal);
+}
+
+html.renobo .bg-black,
+html.renobo .dark\:bg-white {
+	background-color: var(--renobo-primary-green) !important;
+	color: var(--renobo-white) !important;
+}
+
+html.renobo .bg-black:hover,
+html.renobo .dark\:bg-white:hover,
+html.renobo .hover\:bg-gray-900:hover,
 html.renobo .dark\:hover\:bg-gray-100:hover {
-	background-color: rgb(var(--renobo-surface-hover)) !important;
+	background-color: var(--renobo-primary-green-light) !important;
+	transform: translateY(-1px);
 }
 
 /* Input fields */
 html.renobo input,
-html.renobo textarea {
-	background-color: rgb(var(--renobo-surface-light)) !important;
-	border-color: rgba(18, 74, 38, 0.2) !important;
-	color: rgb(var(--renobo-text)) !important;
+html.renobo textarea,
+html.renobo select {
+	background-color: var(--renobo-white) !important;
+	border-color: var(--renobo-gray-200) !important;
+	color: var(--renobo-gray-900) !important;
+	font-family: var(--renobo-font-inter) !important;
+	border-radius: var(--renobo-border-radius);
+	transition: var(--renobo-transition-normal);
 }
 
 html.renobo input:focus,
-html.renobo textarea:focus {
-	border-color: rgb(var(--renobo-green)) !important;
+html.renobo textarea:focus,
+html.renobo select:focus {
+	outline: none !important;
+	border-color: var(--renobo-primary-green) !important;
 	box-shadow: 0 0 0 3px rgba(18, 74, 38, 0.1) !important;
 }
 
-/* Scrollbar for light theme */
+html.renobo .dark\:bg-gray-850,
+html.renobo .dark\:bg-gray-900 {
+	background-color: var(--renobo-white) !important;
+}
+
+html.renobo .dark\:text-gray-300 {
+	color: var(--renobo-gray-700) !important;
+}
+
+/* Links */
+html.renobo a {
+	color: var(--renobo-primary-green);
+	transition: var(--renobo-transition-fast);
+	text-decoration: none;
+}
+
+html.renobo a:hover {
+	color: var(--renobo-primary-green-light);
+}
+
+/* =================================================================
+   5. UTILITIES
+   ================================================================= */
+
+/* Scrollbar */
+html.renobo ::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
 html.renobo ::-webkit-scrollbar-track {
-	background: rgb(var(--renobo-bg-light));
+	background: var(--renobo-gray-100);
 }
 
 html.renobo ::-webkit-scrollbar-thumb {
 	background: rgba(18, 74, 38, 0.3);
+	border-radius: 4px;
 }
 
 html.renobo ::-webkit-scrollbar-thumb:hover {
 	background: rgba(18, 74, 38, 0.5);
+}
+
+/* Shadows */
+html.renobo .shadow-sm {
+	box-shadow: var(--renobo-shadow-sm) !important;
+}
+
+html.renobo .shadow,
+html.renobo .shadow-md {
+	box-shadow: var(--renobo-shadow-md) !important;
+}
+
+html.renobo .shadow-lg {
+	box-shadow: var(--renobo-shadow-lg) !important;
+}
+
+html.renobo .shadow-xl {
+	box-shadow: var(--renobo-shadow-xl) !important;
+}
+
+/* Rounded corners */
+html.renobo .rounded-lg,
+html.renobo .rounded-xl {
+	border-radius: var(--renobo-border-radius) !important;
+}
+
+html.renobo .rounded-2xl {
+	border-radius: var(--renobo-border-radius-xl) !important;
+}
+
+/* Green accent colors for primary elements */
+html.renobo .text-primary,
+html.renobo .bg-primary {
+	color: var(--renobo-primary-green) !important;
+}
+
+html.renobo .border-primary {
+	border-color: var(--renobo-primary-green) !important;
+}
+
+/* Status indicators */
+html.renobo .status-dot {
+	background-color: var(--renobo-primary-green);
+}
+
+/* Card hover effects */
+html.renobo .card:hover,
+html.renobo .feature-card:hover {
+	transform: translateY(-4px);
+	box-shadow: var(--renobo-shadow-xl) !important;
+	transition: var(--renobo-transition-normal);
 }
