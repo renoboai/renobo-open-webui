@@ -529,7 +529,7 @@
 						<img
 							crossorigin="anonymous"
 							src="{WEBUI_BASE_URL}/static/renobo-logo.png"
-							class=" h-12 w-auto"
+							class=" h-16 w-auto"
 							alt="Renobo"
 						/>
 					</div>

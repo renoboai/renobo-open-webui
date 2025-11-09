@@ -183,28 +183,124 @@ pre {
 	box-shadow: 0 10px 15px -3px rgba(18, 74, 38, 0.1), 0 4px 6px -2px rgba(18, 74, 38, 0.05);
 }
 
-/* Renobo Theme Specific Styling */
+/* Renobo Theme Specific Styling - Light & Green */
 html.renobo {
-	/* Override backgrounds with green tints */
-	--renobo-bg-dark: 10 33 18;              /* Very dark green tint instead of pure gray */
-	--renobo-surface-dark: 15 42 24;         /* Dark green tint for surfaces */
+	/* Light backgrounds with green tints */
+	--renobo-bg-light: 240 248 242;          /* Light green background */
+	--renobo-surface-light: 255 255 255;     /* White surfaces */
+	--renobo-surface-hover: 232 245 237;     /* Lighter green on hover */
+	--renobo-text-primary: 18 74 38;         /* Dark green text */
+	--renobo-text-secondary: 26 107 57;      /* Medium green text */
+	background-color: rgb(var(--renobo-bg-light)) !important;
+	font-family: 'Inter', 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif !important;
 }
 
-/* Apply green-tinted backgrounds for renobo theme */
-html.renobo select,
-html.renobo .dark\:bg-gray-900 {
-	background-color: rgb(var(--renobo-surface-dark)) !important;
+/* Sidebar - White background for renobo theme */
+html.renobo #sidebar {
+	background-color: rgb(var(--renobo-surface-light)) !important;
+	color: rgb(var(--renobo-text-primary)) !important;
+	border-right: 1px solid rgba(18, 74, 38, 0.2);
 }
 
-/* Accent colors for borders and highlights in renobo theme */
-html.renobo .border-gray-200,
-html.renobo .dark\:border-gray-800,
-html.renobo .dark\:border-gray-850 {
+/* Main content area - Light green background */
+html.renobo body {
+	background-color: rgb(var(--renobo-bg-light)) !important;
+	color: rgb(var(--renobo-text-primary)) !important;
+}
+
+/* Main chat area - Light green background */
+html.renobo main,
+html.renobo .main-content {
+	background-color: rgb(var(--renobo-bg-light)) !important;
+}
+
+/* Override dark backgrounds with light ones */
+html.renobo .dark\:bg-gray-950,
+html.renobo .dark\:bg-gray-900,
+html.renobo .dark\:bg-gray-850,
+html.renobo .dark\:bg-gray-800 {
+	background-color: rgb(var(--renobo-surface-light)) !important;
+}
+
+html.renobo .bg-gray-50 {
+	background-color: rgb(var(--renobo-surface-hover)) !important;
+}
+
+/* Override dark text with dark green colors */
+html.renobo .dark\:text-gray-200,
+html.renobo .dark\:text-gray-300,
+html.renobo .dark\:text-white,
+html.renobo .text-gray-800,
+html.renobo .text-gray-900,
+html.renobo .dark\:text-gray-100,
+html.renobo .text-gray-700 {
+	color: rgb(var(--renobo-text-primary)) !important;
+}
+
+html.renobo .text-gray-600,
+html.renobo .dark\:text-gray-400,
+html.renobo .text-gray-500 {
+	color: rgb(var(--renobo-text-secondary)) !important;
+}
+
+/* Headings in dark green */
+html.renobo h1,
+html.renobo h2,
+html.renobo h3,
+html.renobo h4,
+html.renobo h5,
+html.renobo h6 {
+	color: rgb(var(--renobo-text-primary)) !important;
+	font-family: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif !important;
+}
+
+/* Select dropdowns - Light background */
+html.renobo select {
+	background-color: rgb(var(--renobo-surface-light)) !important;
+	color: rgb(var(--renobo-text)) !important;
 	border-color: rgba(18, 74, 38, 0.2) !important;
 }
 
-/* Hover states with green tint */
+/* Borders with green accent */
+html.renobo .border-gray-50,
+html.renobo .border-gray-100,
+html.renobo .border-gray-200,
+html.renobo .dark\:border-gray-800,
+html.renobo .dark\:border-gray-850,
+html.renobo .dark\:border-gray-900 {
+	border-color: rgba(18, 74, 38, 0.15) !important;
+}
+
+/* Hover states with light green tint */
 html.renobo .hover\:bg-gray-100:hover,
-html.renobo .dark\:hover\:bg-gray-900:hover {
-	background-color: rgba(18, 74, 38, 0.15) !important;
+html.renobo .dark\:hover\:bg-gray-900:hover,
+html.renobo .dark\:hover\:bg-gray-100:hover {
+	background-color: rgb(var(--renobo-surface-hover)) !important;
+}
+
+/* Input fields */
+html.renobo input,
+html.renobo textarea {
+	background-color: rgb(var(--renobo-surface-light)) !important;
+	border-color: rgba(18, 74, 38, 0.2) !important;
+	color: rgb(var(--renobo-text)) !important;
+}
+
+html.renobo input:focus,
+html.renobo textarea:focus {
+	border-color: rgb(var(--renobo-green)) !important;
+	box-shadow: 0 0 0 3px rgba(18, 74, 38, 0.1) !important;
+}
+
+/* Scrollbar for light theme */
+html.renobo ::-webkit-scrollbar-track {
+	background: rgb(var(--renobo-bg-light));
+}
+
+html.renobo ::-webkit-scrollbar-thumb {
+	background: rgba(18, 74, 38, 0.3);
+}
+
+html.renobo ::-webkit-scrollbar-thumb:hover {
+	background: rgba(18, 74, 38, 0.5);
 }

@@ -50,7 +50,8 @@
 					metaThemeColorTag.setAttribute('content', '#ffffff');
 				} else if (localStorage.theme === 'renobo') {
 					document.documentElement.classList.add('renobo');
-					document.documentElement.classList.add('dark');
+					document.documentElement.classList.remove('dark');
+					document.documentElement.classList.remove('light');
 					metaThemeColorTag.setAttribute('content', '#124a26');
 				} else {
 					document.documentElement.classList.add('dark');

@@ -168,24 +168,20 @@
 			themeToApply = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 		}
 
+		// Remove all theme classes first
+		document.documentElement.classList.remove('dark', 'light', 'renobo');
+
 		if (themeToApply === 'dark') {
 			document.documentElement.style.setProperty('--color-gray-800', '#333');
 			document.documentElement.style.setProperty('--color-gray-850', '#262626');
 			document.documentElement.style.setProperty('--color-gray-900', '#171717');
 			document.documentElement.style.setProperty('--color-gray-950', '#0d0d0d');
+			document.documentElement.classList.add('dark');
+		} else if (_theme === 'renobo') {
+			document.documentElement.classList.add('renobo');
+		} else if (themeToApply === 'light') {
+			document.documentElement.classList.add('light');
 		}
-
-		themes
-			.filter((e) => e !== themeToApply)
-			.forEach((e) => {
-				e.split(' ').forEach((e) => {
-					document.documentElement.classList.remove(e);
-				});
-			});
-
-		themeToApply.split(' ').forEach((e) => {
-			document.documentElement.classList.add(e);
-		});
 
 		const metaThemeColor = document.querySelector('meta[name="theme-color"]');
 		if (metaThemeColor) {
@@ -202,7 +198,7 @@
 					_theme === 'dark'
 						? '#171717'
 						: _theme === 'renobo'
-							? '#00A676'
+							? '#124a26'
 							: '#ffffff'
 				);
 			}
