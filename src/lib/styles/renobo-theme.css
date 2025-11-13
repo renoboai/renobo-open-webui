@@ -62,14 +62,13 @@
    2. BASE STYLES
    ================================================================= */
 html.renobo {
-	/* Gradient background with green tones */
-	background: radial-gradient(circle at 20% 80%, rgba(18, 74, 38, 0.08) 0%, transparent 50%),
-	            radial-gradient(circle at 80% 20%, rgba(45, 139, 77, 0.06) 0%, transparent 50%),
-	            linear-gradient(135deg, var(--renobo-primary-green-bg) 0%, rgba(18, 74, 38, 0.03) 100%);
+	/* Dark green gradient background - VERY VISIBLE */
+	background: linear-gradient(135deg, #2d5f3f 0%, #1a6b39 50%, #124a26 100%) !important;
 	background-attachment: fixed;
 	font-family: var(--renobo-font-inter) !important;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	min-height: 100vh;
 }
 
 html.renobo body {
