@@ -2,6 +2,7 @@
 	import { getContext, onMount, tick } from 'svelte';
 	import Modal from '$lib/components/common/Modal.svelte';
 	import Tooltip from '$lib/components/common/Tooltip.svelte';
+	import QualityMetricsTooltip from './QualityMetricsTooltip.svelte';
 	import { WEBUI_API_BASE_URL } from '$lib/constants';
 
 	const i18n = getContext('i18n');
@@ -155,6 +156,7 @@
 									</div>
 								{/if}
 							{/if}
+
 						{:else}
 							<div class="text-sm dark:text-gray-400">
 								{$i18n.t('No source available')}
