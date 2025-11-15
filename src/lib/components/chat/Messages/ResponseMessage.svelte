@@ -1428,7 +1428,7 @@
 								class="px-4 py-2 rounded-lg text-sm font-medium transition bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-md hover:shadow-lg"
 								on:click={async () => {
 									const buildingData = { building_type: "multi_family", year_built: 1970, heated_area_m2: 2500, location: "Stockholm" };
-									const res = await fetch(`${WEBUI_BASE_URL}/api/v1/reports/generate`, {
+									const res = await fetch(`http://localhost:8000/api/v1/reports/generate`, {
 										method: 'POST',
 										headers: { 'Content-Type': 'application/json' },
 										body: JSON.stringify({ request_id: message.id, building_data: buildingData })
@@ -1447,7 +1447,7 @@
 							<button
 								class="px-4 py-2 rounded-lg text-sm font-medium transition bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200"
 								on:click={async () => {
-									const res = await fetch(`${WEBUI_BASE_URL}/api/v1/reports/verify`, {
+									const res = await fetch(`http://localhost:8000/api/v1/reports/verify`, {
 										method: 'POST',
 										headers: { 'Content-Type': 'application/json' },
 										body: JSON.stringify({ request_id: message.id })
