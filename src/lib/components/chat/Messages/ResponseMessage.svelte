@@ -1421,6 +1421,41 @@
 						{/if}
 					</div>
 
+					<!-- Renobo Interactive Actions -->
+					{#if message?.renobo_actions && message.renobo_actions.length > 0}
+						<div class="flex gap-2 flex-wrap mt-3">
+							{#each message.renobo_actions as action}
+								<button
+									class="px-4 py-2 rounded-lg text-sm font-medium transition {action.style === 'primary'
+										? 'bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-md hover:shadow-lg'
+										: 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200'}"
+									on:click={async () => {
+										const res = await fetch(`${WEBUI_BASE_URL}${action.endpoint}`, {
+											method: 'POST',
+											headers: { 'Content-Type': 'application/json' },
+											body: JSON.stringify(action.params)
+										});
+										if (res.ok) {
+											const contentType = res.headers.get('content-type');
+											if (contentType?.includes('text/html')) {
+												const html = await res.text();
+												const newWindow = window.open();
+												newWindow.document.write(html);
+											} else {
+												const data = await res.json();
+												toast.success('Action completed successfully');
+											}
+										} else {
+											toast.error('Action failed');
+										}
+									}}
+								>
+									{action.label}
+								</button>
+							{/each}
+						</div>
+					{/if}
+
 					{#if message.done && showRateComment}
 						<RateComment
 							bind:message
