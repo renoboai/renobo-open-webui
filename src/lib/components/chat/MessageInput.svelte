@@ -84,6 +84,9 @@
 	export let webSearchEnabled = false;
 	export let codeInterpreterEnabled = false;
 
+	// Store parsed EPC data from uploaded PDFs
+	export let epcData = null;
+
 	$: onChange({
 		prompt,
 		files,
@@ -190,33 +193,83 @@
 		files = [...files, fileItem];
 
 		try {
-			// During the file upload, file content is automatically extracted.
-			const uploadedFile = await uploadFile(localStorage.token, file);
+			// Check if this is a PDF file (EPC)
+			const isPDF = file.name.toLowerCase().endsWith('.pdf');
 
-			if (uploadedFile) {
-				console.log('File upload completed:', {
-					id: uploadedFile.id,
-					name: fileItem.name,
-					collection: uploadedFile?.meta?.collection_name
+			if (isPDF) {
+				console.log('📄 PDF detected - parsing as EPC document:', file.name);
+
+				// Upload to our EPC parsing endpoint instead
+				const formData = new FormData();
+				formData.append('file', file);
+
+				const response = await fetch('http://localhost:8000/api/v1/epc/upload-and-store', {
+					method: 'POST',
+					body: formData
 				});
 
-				if (uploadedFile.error) {
-					console.warn('File upload warning:', uploadedFile.error);
-					toast.warning(uploadedFile.error);
+				if (response.ok) {
+					const result = await response.json();
+					console.log('✅ EPC parsed successfully:', result);
+
+					// Store the parsed EPC data
+					epcData = {
+						building_type: result.building_info?.building_type,
+						year_built: result.building_info?.construction_year,
+						heated_area_m2: result.building_info?.heated_area,
+						atemp_m2: result.building_info?.heated_area,
+						energy_class: result.energy_performance?.energy_class,
+						specific_energy_use: result.energy_performance?.primary_energy_number,
+						location: result.building_info?.address,
+						heating_system: result.technical_systems?.heating_type,
+						ventilation_type: result.technical_systems?.ventilation_type
+					};
+
+					toast.success(`EPC parsed: ${result.building_info?.building_type || 'Building'} from ${result.building_info?.construction_year || 'N/A'}`);
+
+					// Mark file as uploaded (but we won't actually store it in OpenWebUI)
+					fileItem.status = 'uploaded';
+					fileItem.file = { id: result.session_id, name: file.name };
+					fileItem.id = result.session_id;
+					fileItem.url = '#epc-parsed';
+
+					files = files;
+				} else {
+					const error = await response.json();
+					console.error('❌ EPC parsing failed:', error);
+					toast.error(`Failed to parse EPC: ${error.detail || 'Unknown error'}`);
+					files = files.filter((item) => item?.itemId !== tempItemId);
 				}
-
-				fileItem.status = 'uploaded';
-				fileItem.file = uploadedFile;
-				fileItem.id = uploadedFile.id;
-				fileItem.collection_name =
-					uploadedFile?.meta?.collection_name || uploadedFile?.collection_name;
-				fileItem.url = `${WEBUI_API_BASE_URL}/files/${uploadedFile.id}`;
-
-				files = files;
 			} else {
-				files = files.filter((item) => item?.itemId !== tempItemId);
+				// For non-PDF files, use the default OpenWebUI upload
+				const uploadedFile = await uploadFile(localStorage.token, file);
+
+				if (uploadedFile) {
+					console.log('File upload completed:', {
+						id: uploadedFile.id,
+						name: fileItem.name,
+						collection: uploadedFile?.meta?.collection_name
+					});
+
+					if (uploadedFile.error) {
+						console.warn('File upload warning:', uploadedFile.error);
+						toast.warning(uploadedFile.error);
+					}
+
+					fileItem.status = 'uploaded';
+					fileItem.file = uploadedFile;
+					fileItem.id = uploadedFile.id;
+					fileItem.collection_name =
+						uploadedFile?.meta?.collection_name || uploadedFile?.collection_name;
+					fileItem.url = `${WEBUI_API_BASE_URL}/files/${uploadedFile.id}`;
+
+					files = files;
+				} else {
+					files = files.filter((item) => item?.itemId !== tempItemId);
+				}
 			}
 		} catch (e) {
+			console.error('File upload error:', e);
 			toast.error(`${e}`);
 			files = files.filter((item) => item?.itemId !== tempItemId);
 		}

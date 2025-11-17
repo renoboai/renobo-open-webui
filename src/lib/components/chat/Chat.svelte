@@ -138,6 +138,7 @@
 	let chatFiles = [];
 	let files = [];
 	let params = {};
+	let epcData = null;  // Parsed EPC data from PDF uploads
 
 	$: if (chatIdProp) {
 		(async () => {
@@ -1588,6 +1589,7 @@
 				},
 
 				files: (files?.length ?? 0) > 0 ? files : undefined,
+				epc_data: epcData ?? undefined,  // Include parsed EPC data
 				tool_ids: selectedToolIds.length > 0 ? selectedToolIds : undefined,
 				tool_servers: $toolServers,
 
@@ -2033,6 +2035,7 @@
 								bind:codeInterpreterEnabled
 								bind:webSearchEnabled
 								bind:atSelectedModel
+								bind:epcData
 								toolServers={$toolServers}
 								transparentBackground={$settings?.backgroundImageUrl ?? false}
 								{stopResponse}
