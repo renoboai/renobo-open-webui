@@ -865,6 +865,51 @@
 				</div>
 
 				{#if !edit}
+					<!-- Renobo Interactive Actions -->
+					{#if message.done && (message.content?.includes('retrofit') || message.content?.includes('building') || message.content?.includes('energy') || message.content?.includes('kWh') || message.content?.includes('m²'))}
+						<div class="flex gap-2 flex-wrap mb-2">
+							<button
+								class="px-4 py-2 rounded-lg text-sm font-medium transition bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-md hover:shadow-lg"
+								on:click={async () => {
+									const buildingData = { building_type: "multi_family", year_built: 1970, heated_area_m2: 2500, location: "Stockholm" };
+									const res = await fetch(`http://localhost:8000/api/v1/reports/generate`, {
+										method: 'POST',
+										headers: { 'Content-Type': 'application/json' },
+										body: JSON.stringify({ request_id: message.id, building_data: buildingData })
+									});
+									if (res.ok) {
+										const html = await res.text();
+										const newWindow = window.open();
+										newWindow.document.write(html);
+									} else {
+										toast.error('Failed to generate report');
+									}
+								}}
+							>
+								📊 Generate Detailed Report
+							</button>
+							<button
+								class="px-4 py-2 rounded-lg text-sm font-medium transition bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200"
+								on:click={async () => {
+									const res = await fetch(`http://localhost:8000/api/v1/reports/verify`, {
+										method: 'POST',
+										headers: { 'Content-Type': 'application/json' },
+										body: JSON.stringify({ request_id: message.id })
+									});
+									if (res.ok) {
+										const html = await res.text();
+										const newWindow = window.open();
+										newWindow.document.write(html);
+									} else {
+										toast.error('Failed to generate verification report');
+									}
+								}}
+							>
+								🔍 Verify Calculations
+							</button>
+						</div>
+					{/if}
+
 					<div
 						bind:this={buttonsContainerElement}
 						class="flex justify-start overflow-x-auto buttons text-gray-600 dark:text-gray-500 mt-0.5"
@@ -1420,51 +1465,6 @@
 							{/if}
 						{/if}
 					</div>
-
-					<!-- Renobo Interactive Actions -->
-					{#if message.done && (message.content?.includes('retrofit') || message.content?.includes('building') || message.content?.includes('energy') || message.content?.includes('kWh') || message.content?.includes('m²'))}
-						<div class="flex gap-2 flex-wrap mt-3">
-							<button
-								class="px-4 py-2 rounded-lg text-sm font-medium transition bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-md hover:shadow-lg"
-								on:click={async () => {
-									const buildingData = { building_type: "multi_family", year_built: 1970, heated_area_m2: 2500, location: "Stockholm" };
-									const res = await fetch(`http://localhost:8000/api/v1/reports/generate`, {
-										method: 'POST',
-										headers: { 'Content-Type': 'application/json' },
-										body: JSON.stringify({ request_id: message.id, building_data: buildingData })
-									});
-									if (res.ok) {
-										const html = await res.text();
-										const newWindow = window.open();
-										newWindow.document.write(html);
-									} else {
-										toast.error('Failed to generate report');
-									}
-								}}
-							>
-								📊 Generate Detailed Report
-							</button>
-							<button
-								class="px-4 py-2 rounded-lg text-sm font-medium transition bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200"
-								on:click={async () => {
-									const res = await fetch(`http://localhost:8000/api/v1/reports/verify`, {
-										method: 'POST',
-										headers: { 'Content-Type': 'application/json' },
-										body: JSON.stringify({ request_id: message.id })
-									});
-									if (res.ok) {
-										const html = await res.text();
-										const newWindow = window.open();
-										newWindow.document.write(html);
-									} else {
-										toast.error('Failed to generate verification report');
-									}
-								}}
-							>
-								🔍 Verify Calculations
-							</button>
-						</div>
-					{/if}
 
 					{#if message.done && showRateComment}
 						<RateComment

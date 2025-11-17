@@ -95,6 +95,30 @@
 			return str;
 		}
 	};
+
+	const formatSourceName = (name: string, maxLength: number = 20) => {
+		const decoded = decodeString(name);
+
+		// Handle internal sources with friendly names
+		const internalSources = {
+			'ENERGY SAVINGS CALCULATIONS': '💡 Energy Calc',
+			'Building Archetype Match': '🏢 Building Match'
+		};
+
+		if (internalSources[decoded]) {
+			return internalSources[decoded];
+		}
+
+		// Remove file extensions for display
+		const nameWithoutExt = decoded.replace(/\.(pdf|docx?|xlsx?|txt|md)$/i, '');
+
+		// Truncate to maxLength characters
+		if (nameWithoutExt.length > maxLength) {
+			return nameWithoutExt.substring(0, maxLength) + '...';
+		}
+
+		return nameWithoutExt;
+	};
 </script>
 
 <CitationsModal
@@ -125,7 +149,7 @@
 						<div
 							class="flex-1 mx-1 truncate text-black/60 hover:text-black dark:text-white/60 dark:hover:text-white transition"
 						>
-							{decodeString(citation.source.name)}
+							{formatSourceName(citation.source.name)}
 						</div>
 					</button>
 				{/each}
@@ -165,7 +189,7 @@
 											</div>
 										{/if}
 										<div class="flex-1 mx-1 truncate">
-											{decodeString(citation.source.name)}
+											{formatSourceName(citation.source.name)}
 										</div>
 									</button>
 								{/each}
@@ -202,7 +226,7 @@
 									</div>
 								{/if}
 								<div class="flex-1 mx-1 truncate">
-									{decodeString(citation.source.name)}
+									{formatSourceName(citation.source.name)}
 								</div>
 							</button>
 						{/each}
